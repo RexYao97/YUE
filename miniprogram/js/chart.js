@@ -7,57 +7,91 @@ module.exports = {
       height: height
     });
     canvas.setChart(chart);
-    //  console.log(geoJson)
     echarts.registerMap("china", geoJson);
 
     const option = {
       tooltip: {
-        trigger: "item"
+        trigger: "item",
+        formatter:function(obj){
+            return `${obj.data.name} 确诊人数：${obj.data.value}`
+        },
+        textStyle:{
+            fontWeight:'bold',
+            width:'30px'
+        },
+        position:function(point,dom,rect,size){
+            let windowWidth =wx.getSystemInfoSync().windowWidth
+            if(point[0]> windowWidth /2 ){
+                return [parseInt(point[0]-size.width),point[1]]
+            }else {
+                return [point[0],point[1]]
+            }
+            
+        }
       },
       visualMap: {
         min: 0,
         max: 34000,
         // splitNumber: 5,
-        pieces:[
-            {min: 5001}, // 不指定 max，表示 max 为无限大（Infinity）。
-            {min: 3001, max: 5000},
-            {min: 1001, max: 3000},
-            {min: 101, max: 1000},
-            {min: 11, max: 100},
-            // {value: 123, label: '123（自定义特殊颜色）', color: 'grey'}, // 表示 value 等于 123 的情况。
-            {max: 10}     // 不指定 min，表示 min 为无限大（-Infinity）。
+        top: "top",
+        pieces: [
+          { min: 5001 }, // 不指定 max，表示 max 为无限大（Infinity）。
+          { min: 3001, max: 5000 },
+          { min: 1001, max: 3000 },
+          { min: 101, max: 1000 },
+          { min: 11, max: 100 },
+          // {value: 123, label: '123（自定义特殊颜色）', color: 'grey'}, // 表示 value 等于 123 的情况。
+          { max: 10 } // 不指定 min，表示 min 为无限大（-Infinity）。
         ],
-        color: ['#96d1d2','#72b1b9','#4e91a0','#2a7187','#06516e'].reverse(),
+        color: [
+          "#c0e3e4",
+          "#92bfc7",
+          "#639aa9",
+          "#35768c",
+          "#06516e"
+        ].reverse(),
         textStyle: {
-            color: '#000'
+          color: "#000",
+          fontSize: 12
         }
       },
-      textStyle:{
-        fontSize:10,
-        color:'#f1f1f1'
+      textStyle: {
+        color: "#ecf7f7"
       },
+
       series: [
         {
           type: "map",
           mapType: "china",
           label: {
-            normal: {
-              show: true
-            },
+            show: true,
             emphasis: {
               textStyle: {
-                color: "#fff"
+                color: "#fff",
+                fontSize: 8
               }
-            }
+            },
+            textStyle: {
+              color: "#000",
+              fontSize: 8
+            },
+            // formatter:function(value){
+            //   console.log(value)
+            //   if(value.value > 3000) {
+            //     value.marker.style
+            //   }
+            // },
           },
           itemStyle: {
             normal: {
-              borderColor: "#389BB7",
+              borderColor: "#AAAAAA",
               areaColor: "#fff"
+              //   fontSize:8,
             },
             emphasis: {
-              areaColor: "#389BB7",
+              areaColor: "#0000AA",
               borderWidth: 0
+              //   fontSize:8,
             }
           },
           animation: false,
@@ -66,7 +100,7 @@ module.exports = {
         }
       ]
     };
-
+      console.log(echarts.getMap('china'))
     chart.setOption(option);
 
     return chart;

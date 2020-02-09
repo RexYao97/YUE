@@ -33,7 +33,6 @@ Component({
     setIncr(result){
       let data = this.getIncr(result)
       for (let [key, value] of Object.entries(data)){
-        console.log(key)
         if(value > 0) {
           data[key] = `+${value}`
         }else {
@@ -59,7 +58,6 @@ Component({
       }
     },
     getDate(time){
-      console.log(time)
       let date = new Date()
       date.setTime(time)
       this.setData({

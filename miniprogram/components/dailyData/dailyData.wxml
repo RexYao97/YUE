@@ -1,5 +1,6 @@
 <!--components/dailyData.wxml-->
 <view class="layoutDailyleft">
+  <view class='title'>新型冠状病毒肺炎实时动态</view>
   <view class='layoutDailyleftText danger'> <view class='text'>确诊: </view>{{dailyTextContent.confirmedCount}}
     <view class='thanYes'>较昨日{{incrData.confirmedIncr}}</view>
   </view>

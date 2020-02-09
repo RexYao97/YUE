@@ -15,7 +15,8 @@ Component({
   },
 
   data: {
-    seriesData:''
+    seriesData:'',
+    visable:false
   },
 
   ready: function () {
@@ -31,6 +32,11 @@ Component({
   },
 
   methods: {
+    setVisable(flag){
+      this.setData({
+        visable:flag
+      })
+    },
     setSeriesData:function(data){
       this.seriesData = data
     },
@@ -99,6 +105,7 @@ Component({
     },
 
     touchMove(e) {
+      return 
       if (this.chart && e.touches.length > 0) {
         var touch = e.touches[0];
         var handler = this.chart.getZr().handler;

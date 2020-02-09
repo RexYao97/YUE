@@ -3,9 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content:space-around;
-  height: 170px;
+  height: 100%;
   width: 700rpx;
   padding-left: 20rpx;
+  font-weight: 700;
+}
+.layoutDailyleft .title{
+  font-size: 25px;
+
 }
 .layoutDailyleftText{
   font-size: 20px;
@@ -37,12 +42,13 @@
 }
 .layoutDailyRight{
   width: 700rpx;
+  font-weight: 200;
   /* height: 160px; */
   /* padding-left: 400rpx; */
   display: flex;
   /* flex-direction: column; */
   justify-content: flex-end;
   /* align-items: flex-end; */
-  font-size: 12px;
+  font-size: 10px;
   /* flex-direction: column; */
 }
