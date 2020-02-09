@@ -18,10 +18,11 @@ App({
   },
   onLaunch: function () {
     wx.BaaS = requirePlugin('sdkPlugin')
-    //让插件帮助完成登录、支付等功能
+    // //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login,
       wx.getUserInfo,
       wx.requestPayment)
     wx.BaaS.init('6f9354d03f7f1b31a383')
+    console.log(1)
   },
 })

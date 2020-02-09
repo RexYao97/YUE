@@ -9,14 +9,13 @@ Component({
       type: String,
       value: 'ec-canvas'
     },
-
     ec: {
       type: Object
     }
   },
 
   data: {
-
+    seriesData:''
   },
 
   ready: function () {
@@ -32,6 +31,9 @@ Component({
   },
 
   methods: {
+    setSeriesData:function(data){
+      this.seriesData = data
+    },
     init: function (callback) {
       const version = wx.version.version.split('.').map(n => parseInt(n, 10));
       const isValid = version[0] > 1 || (version[0] === 1 && version[1] > 9)
@@ -54,16 +56,17 @@ Component({
       var query = wx.createSelectorQuery().in(this);
       query.select('.ec-canvas').boundingClientRect(res => {
         if (typeof callback === 'function') {
-          this.chart = callback(canvas, res.width, res.height);
+          this.chart = callback(canvas, res.width, res.height, this.seriesData);
         }
         else if (this.data.ec && typeof this.data.ec.onInit === 'function') {
-          this.chart = this.data.ec.onInit(canvas, res.width, res.height);
+          this.chart = this.data.ec.onInit(canvas, res.width, res.height,this.seriesData);
         }
         else {
           this.triggerEvent('init', {
             canvas: canvas,
             width: res.width,
-            height: res.height
+            height: res.height,
+            seriesData:this.seriesData
           });
         }
       }).exec();

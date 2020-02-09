@@ -1,5 +1,7 @@
 {
   "usingComponents": {
+    "daily-display": "../../components/dailyData/dailyData",
     "ec-canvas": "../../ec-canvas/ec-canvas"
+    
   }
 }

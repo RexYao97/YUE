@@ -1,4 +1,15 @@
 <!--index.wxml-->
 <view class="container">
-  <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}"></ec-canvas>
+  <view class="textContent">
+    <!-- <image src="../../image/backlground.jpg" class="imageBackground"></image> -->
+    <daily-display dailyTextContent='{{dailyTextContent}}'></daily-display>
+  </view>
+  <view class='mapTitle'>
+    <view class="bottom">
+      <view class='circle' />
+      <span class='mapTitleText'>疫情地图</span>
+    </view>
+  </view>
+  <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ ec }}" ></ec-canvas>
+  <div>文字数据</div>
 </view>
